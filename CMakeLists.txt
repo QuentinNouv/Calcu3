@@ -3,4 +3,4 @@ project(Calcu3)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(Calcu3 main.cpp variables/Variable.h Program.h Program.cpp)
+add_executable(Calcu3 main.cpp variables/Variable.h Program.h Program.cpp tokens/ExprToken.cpp tokens/ExprToken.h)
