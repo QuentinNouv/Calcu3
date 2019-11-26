@@ -21,7 +21,7 @@ void Program::run(){
 	std::string input;
 	std::cout << "Entrez une expression :" << std::endl;
 	while (true) {
-		bool lastShow = true;
+		bool lastShow;
 		std::getline(std::cin, input);
 		if (input == "exit") return;
 		auto vec = split(input);
@@ -34,7 +34,7 @@ void Program::run(){
 					lastShow = false;
 					e.pop_back();
 				}
-				std::cout << "<" << e << ">" << std::endl;
+				std::cout << "<" << e << ">" << lastShow << std::endl;
 				//TODO trait e
 			}
 		}
