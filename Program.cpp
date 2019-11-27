@@ -3,6 +3,7 @@
 //
 #include <iostream>
 #include "Program.h"
+#include "tokens/Lexer.h"
 
 std::vector<std::string> split(std::string input, const std::string &delimiter = ";"){
 	std::vector<std::string> r;
@@ -36,6 +37,9 @@ void Program::run(){
 				}
 				std::cout << "<" << e << ">" << lastShow << std::endl;
 				//TODO trait e
+				Lexer lexer = Lexer(e);
+				auto tokens = lexer.lex();
+
 			}
 		}
 	}

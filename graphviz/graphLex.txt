@@ -1,0 +1,19 @@
+digraph G {
+
+    waitingExpr -> litteral [label = "a-z A-Z _"];
+    waitingExpr -> waitingExpr [label = "espace ( ) , + - * / ="]
+    waitingExpr -> numeral [label = "0-9"]
+    waitingExpr -> mantisse [label = "."]
+
+    litteral -> litteral [label = "a-z A-Z 0-9 _"]
+    litteral -> waitingExpr [label = "espace ( ) , + - * / ="]
+
+    numeral -> waitingExpr [label = "espace ( ) , + - * / ="]
+    numeral -> numeral [label = "0-9"]
+    numeral -> mantisse [label = "."]
+
+    mantisse -> mantisse [label = "0-9"]
+    mantisse -> waitingExpr [label = "espace ( ) , + - * / ="]
+
+    waitingExpr [shape=Mdiamond];
+}

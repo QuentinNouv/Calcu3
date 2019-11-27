@@ -25,11 +25,10 @@ namespace  tokTypes{
         assign,
         oNull
     };
-    enum uOpType {
-        uMoins,
+    enum parenthesisType {
         lParenth,
         rParenth,
-        uONull
+        parenthesisNull
     };
 }
 
@@ -41,11 +40,11 @@ class ExprToken {
 private:
     tokTypes::type _t;
     tokTypes::opType _oT;
-    tokTypes::uOpType _uOT;
+    tokTypes::parenthesisType _uOT;
     std::string _var;
     double _val{};
 public:
-    ExprToken(type t, opType oT, uOpType uOt, std::string var, double val);
+    ExprToken(type t, opType oT, parenthesisType uOt, std::string var, double val);
 
 public:
     friend class TokenFactory;
@@ -63,7 +62,7 @@ class TokenFactory{
 public:
     static ExprToken getVarToken(std::string &v);
     static ExprToken getOpToken(opType o);
-    static ExprToken getUOpToken(uOpType o);
+    static ExprToken getParenthesisToken(parenthesisType parenthesis);
     static ExprToken getValToken(double v);
     static ExprToken getCommaToken();
 };
