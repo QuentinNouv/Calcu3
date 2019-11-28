@@ -47,15 +47,19 @@ public:
     ExprToken(type t, opType oT, parenthesisType uOt, std::string var, double val);
 
 public:
-    friend class TokenFactory;
-    ExprToken() = delete;
-    [[nodiscard]] type getT() const;
+	friend class TokenFactory;
 
-    [[nodiscard]] opType getOT() const;
+	ExprToken() = delete;
 
-    [[nodiscard]] const std::string &getVar() const;
+	[[nodiscard]] type getT() const;
 
-    [[nodiscard]] double getVal() const;
+	[[nodiscard]] opType getOT() const;
+
+	[[nodiscard]] const std::string &getVar() const;
+
+	[[nodiscard]] double getVal() const;
+
+	[[nodiscard]] parenthesisType getUOT();
 };
 
 class TokenFactory{

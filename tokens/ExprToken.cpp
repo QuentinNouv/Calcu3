@@ -16,23 +16,28 @@ const std::string &ExprToken::getVar() const {
     return _var;
 }
 
-opType ExprToken::getOT() const {
-    return _oT;
+opType ExprToken::getOT() const{
+	return _oT;
 }
 
-type ExprToken::getT() const {
-    return _t;
+type ExprToken::getT() const{
+	return _t;
+}
+
+parenthesisType ExprToken::getUOT(){
+	return _uOT;
 }
 
 ExprToken::ExprToken(type t, opType oT, parenthesisType uOt, std::string var, double val)
-    : _t(t), _oT(oT), _uOT(uOt),_var(std::move(var)), _val(val) {}
-
-ExprToken TokenFactory::getVarToken(std::string &v) {
-    return ExprToken(tokTypes::type::var, tokTypes::opType::oNull, tokTypes::parenthesisType::parenthesisNull, v, NAN);
+		: _t(t), _oT(oT), _uOT(uOt), _var(std::move(var)), _val(val){
 }
 
-ExprToken TokenFactory::getOpToken(opType o) {
-    return ExprToken(tokTypes::type::bOp, o, tokTypes::parenthesisType::parenthesisNull, emptyStr, NAN);;
+ExprToken TokenFactory::getVarToken(std::string &v){
+	return ExprToken(tokTypes::type::var, tokTypes::opType::oNull, tokTypes::parenthesisType::parenthesisNull, v, NAN);
+}
+
+ExprToken TokenFactory::getOpToken(opType o){
+	return ExprToken(tokTypes::type::bOp, o, tokTypes::parenthesisType::parenthesisNull, emptyStr, NAN);;
 }
 
 ExprToken TokenFactory::getParenthesisToken(parenthesisType parenthesis) {
