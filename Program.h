@@ -9,8 +9,12 @@
 #include <map>
 #include <vector>
 #include <string>
+#include "error/Error.h"
 
 class Program{
+private:
+	static void printError(Error &err, std::string &instruction);
+
 public:
 	Program() = delete;
 

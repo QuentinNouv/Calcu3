@@ -36,15 +36,18 @@ using namespace tokTypes;
 
 class TokenFactory;
 
-class ExprToken {
+class ExprToken{
 private:
-    tokTypes::type _t;
-    tokTypes::opType _oT;
-    tokTypes::parenthesisType _uOT;
-    std::string _var;
-    double _val{};
+	tokTypes::type _t;
+	tokTypes::opType _oT;
+	tokTypes::parenthesisType _uOT;
+
+	unsigned position[2];
+
+	std::string _var;
+	double _val{};
 public:
-    ExprToken(type t, opType oT, parenthesisType uOt, std::string var, double val);
+	ExprToken(type t, opType oT, parenthesisType uOt, std::string var, double val, unsigned start, unsigned end);
 
 public:
 	friend class TokenFactory;
@@ -60,15 +63,21 @@ public:
 	[[nodiscard]] double getVal() const;
 
 	[[nodiscard]] parenthesisType getUOT();
+
+	const unsigned int *getPosition() const;
 };
 
 class TokenFactory{
 public:
-    static ExprToken getVarToken(std::string &v);
-    static ExprToken getOpToken(opType o);
-    static ExprToken getParenthesisToken(parenthesisType parenthesis);
-    static ExprToken getValToken(double v);
-    static ExprToken getCommaToken();
+	static ExprToken getVarToken(std::string &v, unsigned start, unsigned end);
+
+	static ExprToken getOpToken(opType o, unsigned start, unsigned end);
+
+	static ExprToken getParenthesisToken(parenthesisType parenthesis, unsigned start, unsigned end);
+
+	static ExprToken getValToken(double v, unsigned start, unsigned end);
+
+	static ExprToken getCommaToken(unsigned start, unsigned end);
 };
 
 

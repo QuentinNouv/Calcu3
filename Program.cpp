@@ -35,12 +35,24 @@ void Program::run(){
 					lastShow = false;
 					e.pop_back();
 				}
-				std::cout << "<" << e << ">" << lastShow << std::endl;
-				//TODO trait e
+				//std::cout << "<" << e << ">" << lastShow << std::endl;
 				Lexer lexer = Lexer(e);
 				auto tokens = lexer.lex();
+				if (lexer.isWrong()) {
+					printError(lexer.getError(), e);
+					continue;
+				}
 
 			}
 		}
 	}
+}
+
+void Program::printError(Error &err, std::string &instruction){
+	std::cerr << "Error : " << err.getMessage() << std::endl;
+	std::cerr << instruction << std::endl;
+	for (int i = 0; i < err.getPosition(); ++i) {
+		std::cerr << '~';
+	}
+	std::cerr << '^' << std::endl;
 }
